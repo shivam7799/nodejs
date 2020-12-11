@@ -2,11 +2,7 @@ const db = require("../models");
 const Contractor = db.contractors;
 const Op = db.Sequelize.Op;
 
-//Create a New Object
-//Create and Save New Contractor:
-
 exports.create = (req, res) => {
-    // Validate request
     if (!req.body.contractor_id) {
       res.status(400).send({
         message: "Content can not be empty!"
@@ -14,7 +10,6 @@ exports.create = (req, res) => {
       return;
     }
   
-    // Create a Contractor
     const contractor = {
       contractor_id: req.body.contractor_id,
       first_name: req.body.first_name,
@@ -23,8 +18,7 @@ exports.create = (req, res) => {
       created_By: req.body.created_By,
       updated_By: req.body.updated_By,
     };
-  
-    // Save Contractor in the database
+
     Contractor.create(contractor)
       .then(data => {
         res.send(data);
@@ -36,9 +30,6 @@ exports.create = (req, res) => {
         });
       });
   };
-
-
-//Retrieve all Contractors from the database:
 
 exports.findAll = (req, res) => {
   const contractor_id = req.query.contractor_id;
@@ -56,10 +47,6 @@ exports.findAll = (req, res) => {
     });
 };
 
-  
-//Retrieve a single object
-//Find a single Contractor with an id:
-
 exports.findOne = (req, res) => {
     const contractor_id = req.body.contractor_id;
 
@@ -75,9 +62,6 @@ exports.findOne = (req, res) => {
         });
 };
 
-//Update an Object
-//Update a Contractor identified by the id in the request.
-
 exports.update = (req, res) => {
     const contractor_id = req.body.contractor_id;
   
@@ -87,7 +71,7 @@ exports.update = (req, res) => {
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "Contractor was updated successfully."
+            message: `Contractor with contractor_id=${contractor_id} was updated successfully.`
           });
         } else {
           res.send({
@@ -102,9 +86,6 @@ exports.update = (req, res) => {
       });
   };
 
-//Delete an object
-//Delete the Contractor with specified id.
-
 exports.delete = (req, res) => {
     const contractor_id = req.body.contractor_id;
   
@@ -114,7 +95,7 @@ exports.delete = (req, res) => {
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "Contractor was deleted successfully!"
+            message: `Contractor with contractor_id=${contractor_id} was deleted successfully!`
           });
         } else {
           res.send({
@@ -129,8 +110,6 @@ exports.delete = (req, res) => {
       });
   };
 
-
-//Delete all Objects
 exports.deleteAll = (req, res) => {
   Contractor.destroy({
     where: {},

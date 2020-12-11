@@ -1,0 +1,16 @@
+type Query {
+    contractor(contractor_id: ID!): Contractor
+    contractors: [Contractor]
+}
+
+type Contractor {
+    contractor_id: ID!
+    first_name: String
+    last_name: String
+    license_number: String
+    created_By: String
+    updated_By: String
+    createdAt: String
+    updatedAt: String
+}
+
