@@ -81,7 +81,7 @@ exports.update = (req, res) => {
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating Property_owner with contractor_id=" + property_owner_id
+          message: "Error updating Property_owner with property_owner_id=" + property_owner_id
         });
       });
   };

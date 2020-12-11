@@ -1,0 +1,15 @@
+type Query {
+    backend_user(backend_user_id: ID!): Backend_user
+    backend_users: [Backend_user]
+}
+
+type Backend_user {
+    backend_user_id: ID!
+    backend_user_first_name: String
+    backend_user_last_name: String
+    created_By: String
+    updated_By: String
+    createdAt: String
+    updatedAt: String
+}
+
