@@ -1,0 +1,15 @@
+type Query {
+    property_owner(property_owner_id: ID!): Property_owner
+    property_owners: [Property_owner]
+}
+
+type Property_owner {
+    property_owner_id: ID!
+    first_name: String
+    last_name: String
+    created_By: String
+    updated_By: String
+    createdAt: String
+    updatedAt: String
+}
+
