@@ -1,0 +1,29 @@
+{
+  "name": "m_user",
+  "version": "1.0.0",
+  "description": "Nodejs Sequelize Express MySQL and  GraphQL ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node.js",
+    "Express",
+    "Sequelize",
+    "MySQL",
+    "Cors",
+    "GraphQL"
+  ],
+  "author": "shivam",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^2.19.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "graphql": "^15.4.0",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  }
+}
