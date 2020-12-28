@@ -25,9 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       field: "created_by",
       allowNull: false
     },
-    modified_by: {
+    updated_by: {
       type: DataTypes.STRING,
-      field: "modified_by",
+      field: "updated_by",
       allowNull: false
     }
   });
