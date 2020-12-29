@@ -1,0 +1,29 @@
+type Query {
+  user(id: ID!): User
+  contractor(id: ID!): Contractor
+  contractors: [Contractor]
+}
+
+type User {
+  id: ID!
+  email: String
+  type: String
+  createdAt: String
+  updatedAt: String
+  created_by: Int
+  updated_by: Int
+  contractors: [Contractor]
+}
+
+type Contractor {
+  id: ID!
+  user: User
+  first_name: String
+  last_name: String
+  mobile: String
+  company_name: String
+  createdAt: String
+  updatedAt: String
+  created_by: Int
+  updated_by: Int
+}
