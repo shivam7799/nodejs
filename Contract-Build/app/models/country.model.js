@@ -1,34 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-  const Contractor = sequelize.define("contractor", {
+  const Country = sequelize.define("country", {
     id: {
       type: DataTypes.INTEGER,
       field: "id",
       primaryKey: true,
       autoIncrement: true
     },
-    fk_user_id: {
-      type: DataTypes.INTEGER,
-      field: "fk_user_id",
-      DEFAULT: null
-    },
-    first_name: {
+    name: {
       type: DataTypes.STRING,
-      field: "first_name",
-      allowNull: false
-    },
-    last_name: {
-      type: DataTypes.STRING,
-      field: "last_name",
-      allowNull: false
-    },
-    mobile: {
-      type: DataTypes.BIGINT,
-      field: "mobile",
-      allowNull: false
-    },
-    company_name: {
-      type: DataTypes.STRING,
-      field: "company_name",
+      field: "name",
       allowNull: false
     },
     createdAt: {
@@ -48,5 +28,5 @@ module.exports = (sequelize, DataTypes) => {
       field: "updated_by"
     }
   });
-  return Contractor;
+  return Country;
 };

@@ -1,23 +1,19 @@
 const db = require("../models");
-const Contractor = db.contractors;
+const Country = db.countries;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
-  const contractor = {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    mobile: req.body.mobile,
-    company_name: req.body.company_name
+  const country = {
+    name: req.body.name
   };
 
-  Contractor.create(contractor)
+  Country.create(country)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Contractor."
+        message: err.message || "Some error occured while creating the country."
       });
     });
 };
@@ -26,14 +22,14 @@ exports.findAll = (req, res) => {
   const id = req.query.id;
   var condition = id ? { id: { [Op.like]: `%${id}%` } } : null;
 
-  Contractor.findAll({ where: condition })
+  Country.findAll({ where: condition })
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving Contractors."
+          err.message || "Some error occurred while retrieving countries."
       });
     });
 };
@@ -41,14 +37,14 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.body.id;
 
-  Contractor.findByPk(id)
+  Country.findByPk(id)
     .then(data => {
       res.send(data);
     })
 
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving Contractor with id=" + id
+        message: "Error retrieving country with id=" + id
       });
     });
 };
@@ -56,23 +52,23 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.body.id;
 
-  Contractor.update(req.body, {
+  Country.update(req.body, {
     where: { id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Contractor was updated successfully."
+          message: `country with id = ${id} was updated successfully.`
         });
       } else {
         res.send({
-          message: `Cannot update Contractor with id=${id}. Maybe Contractor was not found or req.body is empty!`
+          message: `Cannot update country with id=${id}. Maybe country was not found or req.body is empty!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Contractor with id=" + id
+        message: "Error updating country with id=" + id
       });
     });
 };
@@ -80,39 +76,39 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.body.id;
 
-  Contractor.destroy({
+  Country.destroy({
     where: { id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Contractor was deleted successfully!"
+          message: `country with id = ${id} was deleted successfully!`
         });
       } else {
         res.send({
-          message: `Cannot delete Contractor with id=${id}. Maybe Contractor was not found!`
+          message: `Cannot delete country with id=${id}. Maybe country was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Contractor with id=" + id
+        message: "Could not delete country with id = " + id
       });
     });
 };
 
 exports.deleteAll = (req, res) => {
-  Contractor.destroy({
+  Country.destroy({
     where: {},
     truncate: false
   })
     .then(nums => {
-      res.send({ message: `${nums} Contractors were deleted successfully!` });
+      res.send({ message: `${nums} countries were deleted successfully!` });
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all Contractors."
+          err.message || "Some error occurred while removing all countries."
       });
     });
 };

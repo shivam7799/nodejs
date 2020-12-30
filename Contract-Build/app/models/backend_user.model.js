@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Contractor = sequelize.define("contractor", {
+  const Backend_user = sequelize.define("backend_user", {
     id: {
       type: DataTypes.INTEGER,
       field: "id",
@@ -21,16 +21,6 @@ module.exports = (sequelize, DataTypes) => {
       field: "last_name",
       allowNull: false
     },
-    mobile: {
-      type: DataTypes.BIGINT,
-      field: "mobile",
-      allowNull: false
-    },
-    company_name: {
-      type: DataTypes.STRING,
-      field: "company_name",
-      allowNull: false
-    },
     createdAt: {
       type: DataTypes.DATE,
       field: "created_at"
@@ -48,5 +38,5 @@ module.exports = (sequelize, DataTypes) => {
       field: "updated_by"
     }
   });
-  return Contractor;
+  return Backend_user;
 };

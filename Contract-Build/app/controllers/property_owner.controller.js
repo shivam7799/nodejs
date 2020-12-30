@@ -1,23 +1,24 @@
 const db = require("../models");
-const Contractor = db.contractors;
+const Propery_owner = db.property_owners;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
-  const contractor = {
+  const property_owner = {
+    id: req.body.id,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
-    mobile: req.body.mobile,
-    company_name: req.body.company_name
+    mobile: req.body.mobile
   };
 
-  Contractor.create(contractor)
+  Propery_owner.create(property_owner)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Contractor."
+          err.message ||
+          "Some error occurred while creating the Property_owner."
       });
     });
 };
@@ -26,14 +27,14 @@ exports.findAll = (req, res) => {
   const id = req.query.id;
   var condition = id ? { id: { [Op.like]: `%${id}%` } } : null;
 
-  Contractor.findAll({ where: condition })
+  Propery_owner.findAll({ where: condition })
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving Contractors."
+          err.message || "Some error occurred while retrieving Property_owners."
       });
     });
 };
@@ -41,14 +42,14 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.body.id;
 
-  Contractor.findByPk(id)
+  Propery_owner.findByPk(id)
     .then(data => {
       res.send(data);
     })
 
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving Contractor with id=" + id
+        message: "Error retrieving Property_owner with id=" + id
       });
     });
 };
@@ -56,23 +57,23 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.body.id;
 
-  Contractor.update(req.body, {
+  Propery_owner.update(req.body, {
     where: { id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Contractor was updated successfully."
+          message: `Property_owner with id = ${id} was updated successfully.`
         });
       } else {
         res.send({
-          message: `Cannot update Contractor with id=${id}. Maybe Contractor was not found or req.body is empty!`
+          message: `Cannot update Property_owner with id=${id}. Maybe Property_owner was not found or req.body is empty!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Contractor with id=" + id
+        message: "Error updating Property_owner with property_owner_id=" + id
       });
     });
 };
@@ -80,39 +81,42 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.body.id;
 
-  Contractor.destroy({
+  Propery_owner.destroy({
     where: { id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Contractor was deleted successfully!"
+          message: `Property_owner with id = ${id} was deleted successfully!`
         });
       } else {
         res.send({
-          message: `Cannot delete Contractor with id=${id}. Maybe Contractor was not found!`
+          message: `Cannot delete Property_owner with id=${id}. Maybe Property_owner was not found!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Contractor with id=" + id
+        message: "Could not delete Property_owner with id=" + id
       });
     });
 };
 
 exports.deleteAll = (req, res) => {
-  Contractor.destroy({
+  Propery_owner.destroy({
     where: {},
     truncate: false
   })
     .then(nums => {
-      res.send({ message: `${nums} Contractors were deleted successfully!` });
+      res.send({
+        message: `${nums} Property_owners were deleted successfully!`
+      });
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all Contractors."
+          err.message ||
+          "Some error occurred while removing all Property_owners."
       });
     });
 };

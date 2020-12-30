@@ -1,7 +1,20 @@
 type Query {
   user(id: ID!): User
+  users: [User]
   contractor(id: ID!): Contractor
   contractors: [Contractor]
+  backend_user(id: ID!): Backend_user
+  backend_users: [Backend_user]
+  property_owner(id: ID!): Property_owner
+  property_owners: [Property_owner]
+  property_type(id: ID!): Property_Type
+  property_types: [Property_Type]
+  property_sub_type(id: ID!): Property_Sub_Type
+  property_sub_types: [Property_Sub_Type]
+  country(id: ID!): Country
+  countries: [Country]
+  state(id: ID!): State
+  states: [State]
 }
 
 type User {
@@ -13,15 +26,83 @@ type User {
   created_by: Int
   updated_by: Int
   contractors: [Contractor]
+  backend_users: [Backend_user]
+  property_owners: [Property_owner]
 }
 
 type Contractor {
   id: ID!
   user: User
+  users: [User]
   first_name: String
   last_name: String
   mobile: String
   company_name: String
+  createdAt: String
+  updatedAt: String
+  created_by: Int
+  updated_by: Int
+}
+
+type Backend_user {
+  id: ID!
+  user: User
+  users: [User]
+  first_name: String
+  last_name: String
+  createdAt: String
+  updatedAt: String
+  created_by: Int
+  updated_by: Int
+}
+
+type Property_owner {
+  id: ID!
+  user: User
+  users: [User]
+  first_name: String
+  last_name: String
+  mobile: String
+  createdAt: String
+  updatedAt: String
+  created_by: Int
+  updated_by: Int
+}
+
+type Property_Type {
+  id: ID!
+  name: String
+  property_sub_types: [Property_Sub_Type]
+  createdAt: String
+  updatedAt: String
+  created_by: Int
+  updated_by: Int
+}
+
+type Property_Sub_Type {
+  id: ID!
+  name: String
+  property_type: Property_Type
+  createdAt: String
+  updatedAt: String
+  created_by: Int
+  updated_by: Int
+}
+
+type Country {
+  id: ID!
+  name: String
+  states: [State]
+  createdAt: String
+  updatedAt: String
+  created_by: Int
+  updated_by: Int
+}
+
+type State {
+  id: ID!
+  name: String
+  country: Country
   createdAt: String
   updatedAt: String
   created_by: Int

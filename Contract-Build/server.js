@@ -25,6 +25,12 @@ app.get("/", (req, res) => {
 
 require("./app/routes/contractor.routes.js")(app);
 require("./app/routes/user.routes.js")(app);
+require("./app/routes/backend_user.routes.js")(app);
+require("./app/routes/property_owner.routes.js")(app);
+require("./app/routes/property_type.routes.js")(app);
+require("./app/routes/property_sub_type.routes.js")(app);
+require("./app/routes/country.routes.js")(app);
+require("./app/routes/state.routes.js")(app);
 
 const typeDefs = gql(
   fs.readFileSync("./schema.graphql", { encoding: "utf-8" })

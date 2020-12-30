@@ -1,34 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
-  const Contractor = sequelize.define("contractor", {
+  const Property_Sub_Type = sequelize.define("property_sub_type", {
     id: {
       type: DataTypes.INTEGER,
       field: "id",
       primaryKey: true,
       autoIncrement: true
     },
-    fk_user_id: {
+    fk_property_type_id: {
       type: DataTypes.INTEGER,
-      field: "fk_user_id",
-      DEFAULT: null
+      field: "fk_property_type_id"
     },
-    first_name: {
+    name: {
       type: DataTypes.STRING,
-      field: "first_name",
-      allowNull: false
-    },
-    last_name: {
-      type: DataTypes.STRING,
-      field: "last_name",
-      allowNull: false
-    },
-    mobile: {
-      type: DataTypes.BIGINT,
-      field: "mobile",
-      allowNull: false
-    },
-    company_name: {
-      type: DataTypes.STRING,
-      field: "company_name",
+      field: "name",
       allowNull: false
     },
     createdAt: {
@@ -48,5 +32,5 @@ module.exports = (sequelize, DataTypes) => {
       field: "updated_by"
     }
   });
-  return Contractor;
+  return Property_Sub_Type;
 };

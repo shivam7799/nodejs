@@ -6,8 +6,6 @@ exports.create = (req, res) => {
   const user = {
     email: req.body.email,
     type: req.body.type,
-    created_at: req.body.created_at,
-    updated_at: req.body.updated_at,
     created_by: req.body.created_by,
     updated_by: req.body.updated_by
   };
