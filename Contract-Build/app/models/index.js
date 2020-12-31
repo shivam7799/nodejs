@@ -57,6 +57,18 @@ db.users.hasMany(db.backend_users, {
 db.backend_users.belongsTo(db.users, {
   foreignKey: "fk_user_id"
 });
+db.users.hasMany(db.backend_users, {
+  foreignKey: "created_by"
+});
+db.backend_users.belongsTo(db.users, {
+  foreignKey: "created_by"
+});
+db.users.hasMany(db.backend_users, {
+  foreignKey: "updated_by"
+});
+db.backend_users.belongsTo(db.users, {
+  foreignKey: "updated_by"
+});
 
 db.users.hasMany(db.property_owners, {
   as: "property_owners",
@@ -64,6 +76,18 @@ db.users.hasMany(db.property_owners, {
 });
 db.property_owners.belongsTo(db.users, {
   foreignKey: "fk_user_id"
+});
+db.users.hasMany(db.property_owners, {
+  foreignKey: "created_by"
+});
+db.property_owners.belongsTo(db.users, {
+  foreignKey: "created_by"
+});
+db.users.hasMany(db.property_owners, {
+  foreignKey: "updated_by"
+});
+db.property_owners.belongsTo(db.users, {
+  foreignKey: "updated_by"
 });
 
 db.countries.hasMany(db.states, {
@@ -73,40 +97,63 @@ db.countries.hasMany(db.states, {
 db.states.belongsTo(db.countries, {
   foreignKey: "fk_country_id"
 });
-
 db.users.hasMany(db.states, {
-  as: "states",
   foreignKey: "created_by"
 });
 db.states.belongsTo(db.users, {
   foreignKey: "created_by"
 });
 db.users.hasMany(db.states, {
-  as: "states",
   foreignKey: "updated_by"
 });
 db.states.belongsTo(db.users, {
   foreignKey: "updated_by"
 });
 
-// db.users.hasMany(db.backend_users, {
-//   foreignKey: "created_by"
-// });
-// db.backend_users.belongsTo(db.users, {
-//   foreignKey: "created_by"
-// });
-// db.users.hasMany(db.backend_users, {
-//   foreignKey: "updated_by"
-// });
-// db.backend_users.belongsTo(db.users, {
-//   foreignKey: "updated_by"
-// });
+db.users.hasMany(db.countries, {
+  foreignKey: "created_by"
+});
+db.countries.belongsTo(db.users, {
+  foreignKey: "created_by"
+});
+db.users.hasMany(db.countries, {
+  foreignKey: "updated_by"
+});
+db.countries.belongsTo(db.users, {
+  foreignKey: "updated_by"
+});
+
+db.users.hasMany(db.property_types, {
+  foreignKey: "created_by"
+});
+db.property_types.belongsTo(db.users, {
+  foreignKey: "created_by"
+});
+db.users.hasMany(db.property_types, {
+  foreignKey: "updated_by"
+});
+db.property_types.belongsTo(db.users, {
+  foreignKey: "updated_by"
+});
+
 db.property_types.hasMany(db.property_sub_types, {
   as: "property_sub_types",
   foreignKey: "fk_property_type_id"
 });
 db.property_sub_types.belongsTo(db.property_types, {
   foreignKey: "fk_property_type_id"
+});
+db.users.hasMany(db.property_sub_types, {
+  foreignKey: "created_by"
+});
+db.property_sub_types.belongsTo(db.users, {
+  foreignKey: "created_by"
+});
+db.users.hasMany(db.property_sub_types, {
+  foreignKey: "updated_by"
+});
+db.property_sub_types.belongsTo(db.users, {
+  foreignKey: "updated_by"
 });
 
 module.exports = db;
